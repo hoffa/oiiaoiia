@@ -6,7 +6,7 @@
 go install github.com/hoffa/oiiaoiia@latest
 ```
 
-### Usage
+## Usage
 
 ```bash
 oiiaoiia
