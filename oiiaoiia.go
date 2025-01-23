@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "embed"
-	"log"
 	"strings"
 	"time"
 
@@ -15,6 +14,13 @@ var frame0 string
 //go:embed ascii/1.txt
 var frame1 string
 
+func handleKey(key termbox.Key) {
+	switch key {
+	case termbox.KeyEsc:
+		panic("why")
+	}
+}
+
 func main() {
 	frames := []string{
 		frame0,
@@ -24,17 +30,30 @@ func main() {
 	// Initialize termbox
 	err := termbox.Init()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	defer termbox.Close()
 
-	// Display each frame
-	for _, frame := range frames {
-		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
-		//println(frame)
-		printFrame(frame)
-		termbox.Flush()
-		time.Sleep(1000 * time.Millisecond) // Pause for 500 milliseconds
+	events := make(chan termbox.Event)
+	go func() {
+		for {
+			events <- termbox.PollEvent()
+		}
+	}()
+
+	for {
+		// Display each frame
+		for _, frame := range frames {
+			select {
+			case e := <-events:
+				handleKey(e.Key)
+			default:
+				termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
+				printFrame(frame)
+				termbox.Flush()
+				time.Sleep(100 * time.Millisecond) // Pause for 500 milliseconds
+			}
+		}
 	}
 }
 
