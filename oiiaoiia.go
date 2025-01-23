@@ -1,16 +1,26 @@
 package main
 
 import (
-	"io/ioutil"
+	_ "embed"
 	"log"
-	"path/filepath"
 	"strings"
 	"time"
 
 	"github.com/nsf/termbox-go"
 )
 
+//go:embed ascii/0.txt
+var frame0 string
+
+//go:embed ascii/1.txt
+var frame1 string
+
 func main() {
+	frames := []string{
+		frame0,
+		frame1,
+	}
+
 	// Initialize termbox
 	err := termbox.Init()
 	if err != nil {
@@ -18,39 +28,13 @@ func main() {
 	}
 	defer termbox.Close()
 
-	// Directory containing ASCII art frames
-	dir := "./ascii"
-
-	// Read all files in the directory
-	files, err := ioutil.ReadDir(dir)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Array to store frames
-	var frames []string
-
-	// Read each file and store its content in the frames array
-	for _, file := range files {
-		if !file.IsDir() {
-			if filepath.Ext(file.Name()) != ".txt" {
-				continue
-			}
-			content, err := ioutil.ReadFile(filepath.Join(dir, file.Name()))
-			if err != nil {
-				log.Fatal(err)
-			}
-			frames = append(frames, string(content))
-		}
-	}
-
 	// Display each frame
 	for _, frame := range frames {
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
 		//println(frame)
 		printFrame(frame)
 		termbox.Flush()
-		time.Sleep(10 * time.Millisecond) // Pause for 500 milliseconds
+		time.Sleep(1000 * time.Millisecond) // Pause for 500 milliseconds
 	}
 }
 
