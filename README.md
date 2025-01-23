@@ -1,5 +1,7 @@
 # oiiaoiia
 
+[![Release](https://github.com/hoffa/oiiaoiia/actions/workflows/release.yml/badge.svg)](https://github.com/hoffa/oiiaoiia/actions/workflows/release.yml)
+
 ## Installation
 
 ```bash
