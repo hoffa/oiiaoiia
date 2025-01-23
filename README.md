@@ -8,6 +8,8 @@
 go install github.com/hoffa/oiiaoiia@latest
 ```
 
+Or you can use the [pre-build binaries](https://github.com/hoffa/oiiaoiia/releases).
+
 ## Usage
 
 ```bash
