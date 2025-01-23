@@ -14,8 +14,8 @@ jobs:
       - run: |
           ./build.sh
       - run: |
-          git tag --force v1 HEAD
-          git push --force origin v1
-      - run: gh release upload v1 dist/* --clobber
+          git tag --force latest HEAD
+          git push --force origin latest
+      - run: gh release upload latest dist/* --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
