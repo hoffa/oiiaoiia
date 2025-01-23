@@ -1,5 +1,19 @@
 # oiiaoiia
 
+## Installation
+
+```bash
+go install github.com/hoffa/oiiaoiia@latest
+```
+
+### Usage
+
+```bash
+oiiaoiia
+```
+
+## Example
+
 ```
                                   -*-                                           
                                  -+ =@#.               =@@@@*                   
