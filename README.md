@@ -8,7 +8,7 @@
 go install github.com/hoffa/oiiaoiia@latest
 ```
 
-Or you can use the [pre-build binaries](https://github.com/hoffa/oiiaoiia/releases).
+Or you can use the [pre-build binaries](https://github.com/hoffa/oiiaoiia/releases/tag/v1).
 
 ## Usage
 
