@@ -8,6 +8,9 @@ import (
 	"github.com/nsf/termbox-go"
 )
 
+const frameWidth = 80
+const frameHeight = 40
+
 //go:embed ascii/0.txt
 var frame0 string
 
@@ -234,11 +237,11 @@ func main() {
 
 func printFrame(frame string) {
 	w, h := termbox.Size()
-	lines := strings.Split(frame, "\n")
-	startY := (h - len(lines)) / 2
+	startX := (w - frameWidth) / 2
+	startY := (h - frameHeight) / 2
 
+	lines := strings.Split(frame, "\n")
 	for y, line := range lines {
-		startX := (w - len(line)) / 2
 		for x, c := range line {
 			termbox.SetCell(startX+x, startY+y, c, termbox.ColorDefault, termbox.ColorDefault)
 		}
