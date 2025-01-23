@@ -44,12 +44,26 @@ var frame9 string
 func handleKey(key termbox.Key) {
 	switch key {
 	case termbox.KeyEsc:
-		panic("why")
+		panic(":(")
+	}
+}
+
+func printFrame(frame string) {
+	w, h := termbox.Size()
+	startX := (w - frameWidth) / 2
+	startY := (h - frameHeight) / 2
+
+	lines := strings.Split(frame, "\n")
+	for y, line := range lines {
+		for x, c := range line {
+			termbox.SetCell(startX+x, startY+y, c, termbox.ColorDefault, termbox.ColorDefault)
+		}
 	}
 }
 
 func main() {
 	frames := []string{
+		// Stare
 		frame0,
 		frame0,
 		frame0,
@@ -91,6 +105,7 @@ func main() {
 		frame0,
 		frame0,
 
+		// Spin fast
 		frame1,
 		frame2,
 		frame3,
@@ -128,6 +143,7 @@ func main() {
 		frame8,
 		frame9,
 
+		// Stare
 		frame0,
 		frame0,
 		frame0,
@@ -169,6 +185,7 @@ func main() {
 		frame0,
 		frame0,
 
+		// Spin slow
 		frame1, frame1,
 		frame2, frame2,
 		frame3, frame3,
@@ -231,19 +248,6 @@ func main() {
 				termbox.Flush()
 				time.Sleep(40 * time.Millisecond)
 			}
-		}
-	}
-}
-
-func printFrame(frame string) {
-	w, h := termbox.Size()
-	startX := (w - frameWidth) / 2
-	startY := (h - frameHeight) / 2
-
-	lines := strings.Split(frame, "\n")
-	for y, line := range lines {
-		for x, c := range line {
-			termbox.SetCell(startX+x, startY+y, c, termbox.ColorDefault, termbox.ColorDefault)
 		}
 	}
 }
