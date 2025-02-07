@@ -16,7 +16,7 @@ Or you can use the [pre-build binaries](https://github.com/hoffa/oiiaoiia/releas
 oiiaoiia
 ```
 
-## Example
+## Preview
 
 ```
                                   -*-                                           
